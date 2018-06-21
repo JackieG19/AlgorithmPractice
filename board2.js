@@ -14,3 +14,32 @@ Q        | New stacks |                     temp 5 ---- R1   1
 5x4x3
 
 */
+
+
+const q = [];
+const getData = i => {
+   q.push(i);
+}
+
+recurse = (i =>); {
+   if(q.length === 1){
+   return q.pop();      
+   } 
+
+   const temp = q.pop();
+   const item = recurse();
+   q.pop(temp);
+   return item;
+
+const request = () => {
+   if(q.length){
+      throw;
+   }
+         return recurse();
+ }
+}
+
+
+
+
+
