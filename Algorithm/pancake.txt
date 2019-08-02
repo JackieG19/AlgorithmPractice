@@ -1,0 +1,22 @@
+var blank = "-";  pancakes faced down
+var happyFace = "+" pancakes faced up :)
+var count = 0; see how many moves it takes
+var k = []; array of pancakes 
+
+function flipper(){
+    for(var i = 0; i < k.length; i++>){
+        if you find "-"{
+            flip over   
+        }
+        if you find "+"{
+            skip over until you find "-"
+        }
+    }
+    count++;
+}
+
+Note:
+the last 2 pancakes determine if you can flip "+"
+result1 all pancakes are flipped "+" = # of moves
+result2 all of the pancakes are already happy side, no need to flip = 0
+result3 can't flip them all = IMPOSSIBLE
