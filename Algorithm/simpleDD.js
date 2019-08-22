@@ -21,15 +21,15 @@ function rollDice(){
 }
 //console.log(rollDice());
 
-
-function natural(rollDice){
+function naturalNum(rollDice){ // looking for the natural numbers of 1 and 20
+    console.log(rollDice);
     for(var j = 0; j < roll; j++){
-        if(random[i] == 1){
-            return true;
+        if(rollDice == 1){
+            return true; // attack miss
         }
 
-        if(random[i] == 20){
-            return true;
+        if(rollDice == 20){
+            return true; // attack hit
         }
 
         else{
@@ -38,4 +38,4 @@ function natural(rollDice){
 
     }
 }
-console.log(natural());
+console.log(naturalNum(rollDice()));
