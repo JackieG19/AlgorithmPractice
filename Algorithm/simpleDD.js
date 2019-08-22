@@ -13,6 +13,13 @@ var dice = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 2
 var roll = dice.length;
 var modifier = 5;
 
+function modifyArmor(){
+    console.log(armorClass, "+", modifier);
+    var sum = armorClass + modifier;
+    return sum;
+}
+console.log(modifyArmor(rollDice()));
+
 function rollDice(){
     for(var i = 0; i < roll; i++){
         const random = dice[Math.floor(Math.random()* 20)];
