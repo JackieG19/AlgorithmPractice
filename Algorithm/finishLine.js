@@ -47,12 +47,9 @@ function deckShuffle(){
 }
 console.log(deckShuffle());
 
-const player = {
-    player1 : [1, 2, 3],
-    player2 : [1, 2, 3],
-    player3 : [1, 2, 3],
-    player4 : [1, 2, 3],
-}
+
+const players = ["PL1", "PL2", "PL3", "PL4"];
+const marker = ["1st", "2nd", "3rd"];
 
 var blackDice = [1, 2, 3, 4, 5, 6];
 var redDice = [1, 2, 3, 4, 5, 6];
@@ -61,5 +58,15 @@ function rollDice(){
     blackDice = Math.floor(Math.random()* 6);
     redDice = Math.floor(Math.random()* 6);
     console.log("red dice:", redDice, "black dice:", blackDice);
+
+    var dicesValue = blackDice + redDice;
+    console.log("Total dice value:", dicesValue);
 }
 console.log(rollDice());
+
+
+function move(){
+    var suitsValue = parseFloat(fulldeck);
+    console.log(suitsValue);
+}
+console.log(move());
