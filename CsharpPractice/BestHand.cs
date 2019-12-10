@@ -1,34 +1,62 @@
 using System;
+//using System.Collections.Generic					
 
-public class Cards
+public class Card
 {
-	//public int cards = 52;
-	//public int value = 1; 
-	public Random rand;
+	private string face;
+	private string suit;
 	
-	int[] spades = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-	int[] hearts = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-	int[] clubs = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-	int[] diamonds = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
-	
-	public int RandSpades(Random rand)
+	public Card(string cardFace, string cardSuit)
 	{
-		return rand.Next(spades.Length);  
+		face = cardFace;
+		suit = cardSuit;
 	}
+	
+	public override string ToString()
+	{
+		return face + " of " + suit;
+	}
+}
 
-	public int RandHearts(Random rand)
-	{ 
-		return rand.Next(hearts.Length);  
+public class Deck
+{
+	private Card[] deck;
+	private int currentCard;
+	private const int numOfCards = 52;
+	Random rand;
+	
+	public Deck()
+	{
+		string[] faces = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+		string[] suits = {"Spade", "Club", "Hearts", "Diamonds"};
+		deck = new Card[numOfCards];
+		currentCard = 0;
+		rand = new Random();
+		
+		for(int count = 0; count < deck.Length; count++)
+		{
+			deck[count] = new Card(faces[count % 11], suits[count / 13]);
+		}
 	}
 	
-	public int RandClubs(Random rand)
-	{ 
-		return rand.Next(clubs.Length);  
+	public void Shuffle()
+	{
+		currentCard = 0;
+		for(int firstCard = 0; firstCard < deck.Length; firstCard++)
+		{
+			int secondCard = rand.Next(numOfCards);
+			Card temp = deck[firstCard];
+			deck[firstCard] = deck[secondCard];
+			deck[secondCard] = temp;
+		}
 	}
 	
-	public int RandDiamonds(Random rand)
-	{ 
-		return rand.Next(diamonds.Length);  
+	public Card DealCard()
+	{
+		if(currentCard < deck.Length)
+			return deck[currentCard++];
+		else
+			return null;
 	}
 }
 
@@ -36,20 +64,18 @@ public class Program
 {
 	 public static void Main()
 	 {
-		 var card = new Cards();
-		 var rand = new Random();
-     
-		 var cardOfSp = card.RandSpades(rand);
-		 var cardOfHrt = card.RandHearts(rand);
-		 var cardOfClb = card.RandClubs(rand);
-		 var cardOfDimod = card.RandClubs(rand);
-     
-		 Console.WriteLine(cardOfSp + " Of Spades");
-		 Console.WriteLine(cardOfHrt + " Of Hearts");
-		 Console.WriteLine(cardOfClb + " Of Clubs");
-		 Console.WriteLine(cardOfDimod + " Of Diamonds");	 
+	 	Deck deck1 = new Deck();
+		deck1.Shuffle();
+		for(int i = 0; i < 52; i++)
+		{
+			Console.WriteLine("{0, -19}", deck1.DealCard());
+			if((i + 1) % 4 == 0)
+				Console.WriteLine();
+		}
+		 Console.ReadLine();
 	 }
 }
+
 
 /*
 Create a card game where each player(2-4) draws 8 cards from a standard
